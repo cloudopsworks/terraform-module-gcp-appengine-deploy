@@ -9,46 +9,51 @@
 
 variable "namespace" {
   description = "Namespace for the App Engine application."
-  type = string
-  default = "default"
+  type        = string
+  default     = "default"
 }
 
 variable "region" {
   description = "GCP Region where App Engine will be created."
-  type = string
-  default = "us-central1"
+  type        = string
+  default     = "us-central1"
 }
 
 variable "appengine" {
   description = "App Engine application configuration."
-  type = any
-  default = {}
+  type        = any
+  default     = {}
 }
 
 variable "dns" {
   description = "DNS configuration for custom domains."
-  type = any
-  default = {}
+  type        = any
+  default     = {}
 }
 
 variable "release" {
   description = "Release information for tagging and versioning."
-  type = any
-  default = {}
+  type        = any
+  default     = {}
 }
 
 variable "version_label" {
   description = "Label for the App Engine version."
-  type = string
+  type        = string
 }
 
 variable "absolute_path" {
   description = "Absolute path to the application source code."
-  type = string
+  type        = string
 }
 
 variable "observability" {
   description = "Observability configuration for monitoring and logging."
-    type = any
-    default = {}
+  type        = any
+  default     = {}
+}
+
+variable "versions_bucket" {
+  description = "GCS Bucket for storing App Engine versions."
+  type        = string
 }

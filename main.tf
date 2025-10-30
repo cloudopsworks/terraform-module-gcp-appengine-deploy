@@ -7,3 +7,8 @@
 #     Distributed Under Apache v2.0 License
 #
 
+resource "google_app_engine_application" "app" {
+  project     = try(var.appengine.project_id, null)
+  location_id = try(var.appengine.region, null)
+
+}
