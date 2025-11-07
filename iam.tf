@@ -7,3 +7,14 @@
 #     Distributed Under Apache v2.0 License
 #
 
+resource "google_service_account" "appengine_sa" {
+  account_id   = local.release_name
+  display_name = "${local.release_name} Service Account"
+  description  = "Service Account for ${local.release_name} App Engine Application"
+}
+
+resource "google_project_iam_member" "gae_api" {
+  project = google_service_account.appengine_sa.project
+  role    = "roles/compute.networkUser"
+  member  = google_service_account.appengine_sa.member
+}
