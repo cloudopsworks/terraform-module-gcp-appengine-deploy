@@ -60,7 +60,7 @@ resource "google_app_engine_standard_app_version" "app_version" {
   instance_class            = var.appengine.instance.class
   deployment {
     zip {
-      source_url = ""
+      source_url = "gs://${var.versions_bucket}/${var.bucket_path}"
     }
   }
 }

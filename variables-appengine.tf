@@ -57,3 +57,9 @@ variable "versions_bucket" {
   description = "GCS Bucket for storing App Engine versions."
   type        = string
 }
+
+variable "bucket_path" {
+  description = "Path to the Google Storage Bucket"
+  type        = string
+  default     = ""
+}
