@@ -21,7 +21,7 @@ endef
 define PROVIDER_CHOMP_GCP
 provider "google" {
 }
-provider "google_beta" {
+provider "google-beta" {
 }
 endef
 define PROVIDER_CHOMP_AZURERM
@@ -82,17 +82,20 @@ tag:: tag_local
 ## Initialize the project for a specific cloud provider: AWS
 init/aws:
 	@echo -n "aws" > .github/.provider
+	@rm -f provider.temp.tf
 	@cp .cloudopsworks/aws/* .
 	@$(GIT) add .github/.provider *.tf
 
 ## Initialize the project for a specific cloud provider: GCP
 init/gcp:
 	@echo -n "gcp" > .github/.provider
+	@rm -f provider.temp.tf
 	@cp .cloudopsworks/gcp/* .
 	@$(GIT) add .github/.provider *.tf
 
 ## Initialize the project for a specific cloud provider: Azure RM
 init/azurerm:
 	@echo -n "azurerm" > .github/.provider
+	@rm -f provider.temp.tf
 	@cp .cloudopsworks/azurerm/* .
 	@$(GIT) add .github/.provider *.tf
