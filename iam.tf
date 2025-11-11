@@ -25,8 +25,15 @@ resource "google_project_iam_member" "log_writer" {
   member  = google_service_account.appengine_sa.member
 }
 
+resource "google_project_iam_member" "registry_writer" {
+  project = google_service_account.appengine_sa.project
+  role    = "roles/artifactregistry.writer"
+  member  = google_service_account.appengine_sa.member
+}
+
 resource "google_storage_bucket_iam_binding" "bucket_access" {
   bucket = var.versions_bucket
   role   = "roles/storage.objectAdmin"
   members = [google_service_account.appengine_sa.member]
 }
+
