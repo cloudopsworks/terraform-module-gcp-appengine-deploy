@@ -19,7 +19,7 @@ locals {
 
 resource "google_app_engine_standard_app_version" "app_version" {
   count      = local.engine_standard ? 1 : 0
-  version_id = var.version_label
+  version_id = replace(var.version_label, ".", "-")
   service    = local.release_name
   runtime    = var.appengine.runtime
   entrypoint {
