@@ -63,6 +63,7 @@ resource "google_app_engine_standard_app_version" "app_version" {
       source_url = "https://storage.googleapis.com/${var.versions_bucket}/${var.bucket_path}"
     }
   }
+
 }
 
 # resource "google_app_engine_flexible_app_version" "app_version" {
