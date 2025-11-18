@@ -32,8 +32,8 @@ resource "google_project_iam_member" "registry_writer" {
 }
 
 resource "google_storage_bucket_iam_binding" "bucket_access" {
-  bucket = var.versions_bucket
-  role   = "roles/storage.objectAdmin"
+  bucket  = var.versions_bucket
+  role    = "roles/storage.objectAdmin"
   members = [google_service_account.appengine_sa.member]
 }
 

@@ -66,5 +66,5 @@ variable "bucket_path" {
 
 variable "repository_owner" {
   description = "Owner of the source code repository."
-  type = string
+  type        = string
 }
