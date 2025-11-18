@@ -63,3 +63,8 @@ variable "bucket_path" {
   type        = string
   default     = ""
 }
+
+variable "repository_owner" {
+  description = "Owner of the source code repository."
+  type = string
+}
