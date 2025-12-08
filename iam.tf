@@ -43,6 +43,6 @@ resource "google_storage_bucket_iam_binding" "bucket_access" {
 resource "google_service_account_iam_binding" "allow_impersonation" {
   service_account_id = google_service_account.appengine_sa.id
   role               = "roles/iam.serviceAccountUser"
-  members = ["serviceAccount:${data.google_client_openid_userinfo.current.email}"]
+  members            = ["serviceAccount:${data.google_client_openid_userinfo.current.email}"]
 }
 
