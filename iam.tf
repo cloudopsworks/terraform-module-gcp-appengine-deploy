@@ -37,12 +37,12 @@ resource "google_project_iam_member" "registry_writer" {
 resource "google_storage_bucket_iam_binding" "bucket_access" {
   bucket  = var.versions_bucket
   role    = "roles/storage.objectAdmin"
-  members = ["serviceAccount:${data.google_client_openid_userinfo.current.email}"]
+  members = [google_service_account.appengine_sa.member]
 }
 
 resource "google_service_account_iam_binding" "allow_impersonation" {
   service_account_id = google_service_account.appengine_sa.id
   role               = "roles/iam.serviceAccountUser"
-  members = [data.google_client_config.current.id]
+  members = ["serviceAccount:${data.google_client_openid_userinfo.current.email}"]
 }
 
