@@ -7,6 +7,9 @@
 #     Distributed Under Apache v2.0 License
 #
 
+data "google_client_config" "current" {}
+data "google_client_openid_userinfo" "current" {}
+
 resource "google_service_account" "appengine_sa" {
   account_id   = local.release_name
   display_name = "${local.release_name} Service Account"
@@ -34,6 +37,12 @@ resource "google_project_iam_member" "registry_writer" {
 resource "google_storage_bucket_iam_binding" "bucket_access" {
   bucket  = var.versions_bucket
   role    = "roles/storage.objectAdmin"
-  members = [google_service_account.appengine_sa.member]
+  members = ["serviceAccount:${data.google_client_openid_userinfo.current.email}"]
+}
+
+resource "google_service_account_iam_binding" "allow_impersonation" {
+  service_account_id = google_service_account.appengine_sa.id
+  role               = "roles/iam.serviceAccountUser"
+  members = [data.google_client_config.current.id]
 }
 
